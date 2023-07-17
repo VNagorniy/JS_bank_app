@@ -1,10 +1,10 @@
 import { BaseScreen } from '@/core/component/base-screen.component';
 
-export class AboutUs extends BaseScreen {
+export class NotFound extends BaseScreen {
   constructor() {
-    super({ title: 'About Us' });
+    super({ title: 'NotFound' });
   }
   render() {
-    return '<p>AboutUs</p>';
+    return '<p>NotFound</p>';
   }
 }
