@@ -7,14 +7,14 @@ export class BaseScreen {
    * @param {string} options.title - The title for the screen
    */
 
+  constructor({ title }) {
+    document.title = getTitle(title);
+  }
+
   /**
    * Render the child component content
    * @returns {HTMLElement}
    */
-
-  constructor({ title }) {
-    document.title = getTitle(title);
-  }
 
   render() {
     throw new Error('Render method must be implemented in the child class');
