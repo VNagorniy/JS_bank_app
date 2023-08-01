@@ -1,3 +1,5 @@
+import ChildComponent from '../component/child.component';
+
 class RenderService {
   /**
    * @param {string} html
