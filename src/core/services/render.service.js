@@ -32,7 +32,7 @@ class RenderService {
     for (const element of allElements) {
       const elementTagName = element.tagName.toLowerCase();
       if (componentTagPattern.test(elementTagName)) {
-        const componentName = elementTagName.replace(componentTagPattern, '').replace(/-/g);
+        const componentName = elementTagName.replace(componentTagPattern, '').replace(/-/g, '');
 
         const foundComponent = components.find((Component) => {
           const instance = Component instanceof ChildComponent ? Component : new Component();
@@ -44,7 +44,7 @@ class RenderService {
           const componentContent = foundComponent instanceof ChildComponent ? foundComponent.render() : new foundComponent().render();
           element.replaceWith(componentContent);
         } else {
-          console.error(`Component "${componentName}" not found in the provided components array`);
+          console.error(`Component "${componentName}" not found in the provided components array.`);
         }
       }
     }
