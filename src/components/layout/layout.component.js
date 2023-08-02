@@ -1,14 +1,16 @@
+import ChildComponent from '@/core/component/child.component';
+import { $R } from '@/core/rquery/rquery.lib';
 import renderService from '@/core/services/render.service';
 
 import styles from './layout.module.scss';
 import template from './layout.template.html';
-import { $R } from '@/core/rquery/rquery.lib';
+
 import { Header } from './header/header.component';
-import ChildComponent from '@/core/component/child.component';
 
 export class Layout extends ChildComponent {
   constructor({ router, children }) {
     super();
+
     this.router = router;
     this.children = children;
   }
@@ -21,7 +23,13 @@ export class Layout extends ChildComponent {
     const contentContainer = $R(this.element).find('#content');
     contentContainer.append(this.children);
 
-    mainElement.before(new Header().render()).append(contentContainer.element);
+    mainElement
+      .before(
+        new Header({
+          router: this.router,
+        }).render()
+      )
+      .append(contentContainer.element);
 
     return this.element;
   }
