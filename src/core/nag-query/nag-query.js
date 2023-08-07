@@ -1,5 +1,8 @@
 import { SERVER_URL } from '@/config/url.config';
 import { extractErrorMessage } from './extract-error-message';
+import { StorageService } from '../services/storage.service';
+import { ACCESS_TOKEN_KEY } from '@/constants/auth.constants';
+import { NotificationService } from '../services/notification.service';
 
 /**
  * NagQuery is a minimalistic library for handling API requests.
@@ -23,7 +26,7 @@ export async function nagQuery({ path, body = null, headers = {}, method = 'GET'
 
   /* ACCESS_TOKEN from LS */
 
-  const accessToken = '';
+  const accessToken = new StorageService().getItem(ACCESS_TOKEN_KEY);
 
   const requestOptions = {
     method,
@@ -55,6 +58,8 @@ export async function nagQuery({ path, body = null, headers = {}, method = 'GET'
         if (onError) {
           onError(errorMessage);
         }
+
+        new NotificationService().show('error', errorMessage);
       }
     }
   } catch (errorData) {
