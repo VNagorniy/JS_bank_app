@@ -1,4 +1,4 @@
-import { USER_STORAGE_KEY } from '@/constants/auth.constants';
+import { ACCESS_TOKEN_KEY, USER_STORAGE_KEY } from '@/constants/auth.constants';
 import { StorageService } from '../services/storage.service';
 
 /**

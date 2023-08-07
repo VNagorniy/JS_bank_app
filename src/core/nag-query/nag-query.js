@@ -51,16 +51,16 @@ export async function nagQuery({ path, body = null, headers = {}, method = 'GET'
       data = await response.json();
       if (onSuccess) {
         onSuccess(data);
-      } else {
-        const errorData = await response.json();
-        const errorMessage = extractErrorMessage(errorData);
-
-        if (onError) {
-          onError(errorMessage);
-        }
-
-        new NotificationService().show('error', errorMessage);
       }
+    } else {
+      const errorData = await response.json();
+      const errorMessage = extractErrorMessage(errorData);
+
+      if (onError) {
+        onError(errorMessage);
+      }
+
+      new NotificationService().show('error', errorMessage);
     }
   } catch (errorData) {
     const errorMessage = extractErrorMessage(errorData);
