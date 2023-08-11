@@ -20,6 +20,11 @@ export class Header extends ChildComponent {
     this.store.addObserver(this);
 
     this.router = router;
+
+    this.userItem = new UserItem({
+      avatarPath: '/',
+      name: 'Vladimir',
+    });
   }
 
   update() {
@@ -29,6 +34,7 @@ export class Header extends ChildComponent {
 
     if (this.user) {
       authSideElement.show();
+      this.userItem.update(this.user);
       this.router.navigate('/');
     } else {
       authSideElement.hide();
@@ -44,10 +50,7 @@ export class Header extends ChildComponent {
           router: this.router,
         }),
         Search,
-        new UserItem({
-          avatarPath: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
-          name: 'Vladimir',
-        }),
+        this.userItem,
       ],
       styles
     );
