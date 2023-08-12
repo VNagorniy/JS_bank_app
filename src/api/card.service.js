@@ -6,7 +6,7 @@ export class CardService {
   #BASE_URL = '/cards';
 
   constructor() {
-    this.store = Store.getInstance();
+    this.store = Store.getInstance().state;
     this.notificationService = new NotificationService();
   }
 
@@ -48,7 +48,7 @@ export class CardService {
    * @returns {Promise} A promise that resolves with the redQuery response.
    */
   transfer({ amount, toCardNumber }, onSuccess) {
-    return redQuery({
+    return nagQuery({
       path: `${this.#BASE_URL}/transfer-money`,
       method: 'PATCH',
       body: {
